@@ -1,0 +1,38 @@
+﻿@using CinemaTicketBooking.Models.Entities;
+@model User
+
+<h3>Create a new account</h3>
+<form method="get" action="/users/edituser">
+    <input type="hidden" name="id" value="@Model?.Id">
+    @* <label for="Fname">First Name</label> *@
+    @Html.LabelFor(u => u.FName, "First Name")
+    @* <input type="text" id="fname" name="fname" value="@Model?.FName"> *@
+    @Html.TextBoxFor(u => u.FName)
+    <label asp-for="LName">Last Name</label>
+    <input type="text" asp-for="LName">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="@Model?.Email">
+    <label for="username">UserName</label>
+    <input type="text" id="username" name="username" value="@Model?.UserName">
+    <label asp-for="Password">Password</label>
+    @* <input type="password" id="password" name="password"> *@
+    @Html.PasswordFor(u => u.Password, new { value = Model?.Password,  })
+    @Html.Label("show-password", "show password")
+    @Html.CheckBox("show-password")
+    <hr>
+@*     <label>Confirm Password</label>
+    <input> *@
+    <input type="submit">
+</form>
+<script>
+    let password = document.getElementById("Password");
+    let showPassword = document.getElementById("show-password");
+
+    showPassword.onclick = () => {
+        if (password.type == "password") {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+    }
+</script>

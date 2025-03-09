@@ -1,0 +1,36 @@
+﻿@using CinemaTicketBooking.Models.Entities;
+@model IEnumerable<Movie>
+
+<main role="main">
+
+@foreach(Movie m in Model)
+{
+    <article>
+        <h2>@m.Title</h2>
+        <img src="/images/@m.PictureUrl">
+        <div class="movie-info-container">
+            <p>@m.Description</p>
+            <div class="movie-info"><span class="key">Cinema: </span>@m.Cinema.Name</div>
+            <div class="movie-info"><span class="key">Category: </span>@m.Category</div>
+            <div class="movie-info"><span class="key">Start Date: </span>@m.StartDate.ToString("dd MMM y")</div>
+        <div class="movie-info"><span class="key">End Date: </span>@m.EndDate.ToString("dd MMM y")</div>
+        <div class="movie-info"><span class="key">Status: </span><span class="status">@(m.StartDate.CompareTo(DateTime.Now) > 0 ? "upcoming" : "available")</span></div>
+        </div>
+        <div class="movie-navs">
+            <a class="movie-nav add-to-cart" href=""><i class="fa-solid fa-cart-shopping"></i> Add to Cart (Price $@m.Price)</a>
+            <a class="movie-nav show-details" href="http://localhost:5249/movies/movie/@m.Id"><i class="fa-solid fa-eye"></i> Show Details</a>
+        </div>
+    </article>
+}
+</main>
+<script>
+    const status = document.querySelectorAll(".status");
+
+    for (const s of status) {
+        if (s.innerText == "UPCOMING") {
+            s.style.backgroundColor = "#0062ca";
+        } else {
+            s.style.backgroundColor = "#259c41";
+        }
+    }
+</script>

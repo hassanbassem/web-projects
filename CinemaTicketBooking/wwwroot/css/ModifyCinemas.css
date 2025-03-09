@@ -1,0 +1,76 @@
+﻿
+table {
+    width: 70%;
+    margin: auto;
+    flex-grow: 1;
+}
+
+.table-container {
+    display: block;
+}
+
+.cinema-logo {
+    width: 20%;
+}
+
+td img {
+    width: 80%;
+    border-radius: 50%;
+}
+
+tr {
+    border-top: 1px solid #ececec;
+}
+
+th,td {
+    padding: 10px 0px 10px 10px;
+}
+
+.name {
+    width: 20%;
+}
+
+.desc {
+    width: 40%;
+}
+
+.cinema-nav {
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid;
+}
+
+.cinema-nav:active {
+    outline: 3px solid;
+}
+
+.edit {
+    border-color: #0062ca;
+    color: #0062ca;
+}
+
+.edit:hover {
+    background-color: #0062ca;
+    color: white;
+}
+
+.edit:active {
+    outline-color: #0062ca4d;
+}
+
+.delete {
+    background-color: #dd3545;
+    color: white;
+    border: 0px;
+}
+
+.delete:hover {
+    background-color: #b41e2e;
+    color: white;
+}
+
+.delete:active {
+    outline-color: #ba8993;
+    color: white
+}

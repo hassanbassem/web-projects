@@ -1,0 +1,12 @@
+﻿@using CinemaTicketBooking.Models.Entities;
+@model Artist
+
+<content>
+    <h3 class="item-title">Details of @Model.Name</h3>
+    <div class="item-info">
+        <img src="~/images/@Model.PictureUrl" alt="@Model.Name logo">
+        <hr>
+        <div class="movie-info"><span class="long key">Name</span>@Model.Name</div>
+        <div class="movie-info"><span class="long key">Bio</span>@Model.Bio</div>
+    </div>
+</content>

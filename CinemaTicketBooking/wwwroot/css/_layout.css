@@ -1,0 +1,28 @@
+﻿.search-form {
+    flex-basis: 30%;
+}
+
+.search {
+    width: 90%;
+}
+
+.search-button {
+    border: 1px solid #259c41;
+    outline: none;
+    border-radius: 4px;
+    padding: 10px;
+    color: #259c41 !important;
+    background-color: white;
+}
+
+.search-button:hover {
+    color: white !important;
+    background-color: #259c41;
+}
+
+.user-navs {
+    display: flex;
+    justify-content: center;
+    gap: 4%;
+    flex-basis: 15%;
+}

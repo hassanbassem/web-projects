@@ -1,0 +1,45 @@
+﻿@using CinemaTicketBooking.Models.Entities;
+@model Movie
+
+<article class="movie-details">
+    <h2>@Model.Title Details</h2>
+    <img src="/images/@Model.PictureUrl" alt="@Model.Title pic">
+    <div class="movie-info-container">
+        <h3>@Model.Title</h3>
+        <p>@Model.Description</p>
+        <div class="movie-info"><span class="key">Cinema: </span><a href="http://localhost:5249/cinemas/cinema/@Model.Cinema.Id">@Model.Cinema.Name</a></div>
+        <div class="movie-info"><span class="key">Category: </span>@Model.Category</div>
+        <div class="movie-info"><span class="key">Producer: </span><a href="http://localhost:5249/producers/producer/@Model.Producer.Id">@Model.Producer.Name</a></div>
+        <div class="movie-info"><span class="key">Start Date: </span>@Model.StartDate.ToString("dd MMM y")</div>
+        <div class="movie-info"><span class="key">End Date: </span>@Model.EndDate.ToString("dd MMM y")</div>
+        <div class="movie-info">
+            <span class="key">Actors: </span>
+             <hr>
+            <ul>
+                @foreach (Actor a in Model.Actors)
+                {
+                    <li>
+                        <figure>
+                            <img src="~/images/@a.PictureUrl" alt="@a.Name picture">
+                            <figcaption><a href="http://localhost:5249/actors/actor/@a.Id">@a.Name</a></figcaption>
+                        </figure>
+                    </li>
+                }
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <div class="movie-navs">
+        <a class="movie-nav show-details" href="http://localhost:5249/movies?pageno=1" >Back to List</a>
+        <a class="movie-nav add-to-cart" href=""><i class="fa-solid fa-cart-shopping"></i> Add to Cart (Price $@Model.Price)</a>
+    </div>
+</article>
+<script>
+    const actorImages = document.querySelectorAll("ul img");
+    for (const image of actorImages) {
+        const width = image.offsetWidth;
+        console.log(width);
+        image.style.height = width + "px";
+        console.log(image.style.height);
+    }
+</script>

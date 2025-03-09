@@ -1,0 +1,121 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.movie-info-container {
+    padding: 20px 30px;
+}
+
+.movie-info {
+    margin-bottom: 16px;
+}
+
+.key {
+    font-weight: bold;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, calc(100%/3));
+    grid-template-rows: repeat(3, 1fr);
+    padding: 20px;
+    min-height: 100%;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+article {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto 1fr auto;
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+}
+
+h2 {
+    background-color: #18a3b8;
+    color: white;
+    grid-column: 1 / span 2;
+    margin: 0px;
+    padding: 20px;
+    font-size: 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.movie-navs {
+    grid-column: 1 / span 2;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e4e4e4;
+    border-top: 1px solid #f1f1f1;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.movie-nav {
+    border-radius: 4px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.add-to-cart {
+    background-color: #259c41;
+    color: white;
+}
+
+.show-details {
+    border: 1px solid;
+    color: #0062ca;
+    background-color: transparent;
+    border-color: #0062ca;
+}
+
+.movie-nav:active {
+    outline: 3px solid;
+}
+
+.add-to-cart:hover {
+    background-color: #208539;
+    color: white;
+    outline-color: #259c416e;
+}
+
+.show-details:hover {
+    border: 1px solid;
+    color: white;
+    background-color: #0062ca;
+    border-color: #0062ca;
+    outline-color: #0062ca4d;
+}
+
+.status {
+    color: white;
+    padding: 0px 3px 3px;
+    line-height: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: small;
+    border-radius: 4px;
+}
+
+footer {
+    position: static !important;
+}
+
+
+

@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    int? number = ViewData["mo"] as int?;
+}
+
+<div style="flex-grow: 1;" class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core @(number + 1) @(ViewBag.mo2 - 1)</a>.</p>
+</div>

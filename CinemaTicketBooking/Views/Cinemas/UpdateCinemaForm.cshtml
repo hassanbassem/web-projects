@@ -1,0 +1,115 @@
+﻿@using CinemaTicketBooking.Models.Entities;
+@model Cinema;
+
+<main class="table-container">
+    <h4>Update @Model.Name</h4>
+    <form id = "update" method="post" action="/Cinemas/UpdateCinema/@Model.Id" enctype="multipart/form-data">
+        <input type="text" name="Id" value="@Model.Id" hidden>
+        <div class="logo-div">
+            <label for="logo-input" class="edit cinema-nav">Upload logo</label>
+            <input type="file" id="logo-input" name="Picture" hidden class="val-force"
+                   data-val="true" data-val-picture="Unsupported file type" data-val-picture-ext1="jpg" data-val-picture-ext2="png"
+                   data-val-maxsize="File is too large. Maximum size is 10MB" data-val-maxsize-size="10000000">
+            <img id="logo-image" src="/images/@Model.Picture?.UniqueName">
+            <p class="picture-filename">@Model.Picture?.FilenameAtClient</p>
+            <span asp-validation-for="Picture" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label for="desc-input">Description</label>
+            <input type="text" id="desc-input" name="Description" value="@Model.Description">
+        </div>
+@*         @foreach (string error in ViewBag.Errors == null?Array.Empty<string>():ViewBag.Errors)
+        {
+            <p style="color:red;">@error</p>
+        } *@
+        <input type="submit" value="Save">
+    </form>
+</main>
+    @section Scripts {
+    <script>
+        document.getElementById("logo-input").addEventListener("change", showFileName)
+        document.getElementById("logo-input").addEventListener("change", displayContent)
+
+        function showFileName(event) {
+            for (const file of document.getElementsByClassName("picture-filename")) {
+                file.innerText = event.target.files[0].name;
+            }
+        }
+
+        function displayContent(event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = () => {
+                    document.querySelector("img").src = reader.result; 
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $("document").ready(function () {
+            /* Ignore validation on some elements. */
+            var ignores = $.validator.defaults.ignore.replace(/(^|\b)(:hidden)($|\b)/gi, ':hidden:not(.val-force)').split(',');
+            ignores.push('.val-ignore');
+            $.validator.setDefaults({ ignore: ignores.join(',') });
+
+            $.validator.addMethod("picture", function (value, element, params) {
+                let file = element.files[0];
+
+                if(!file) {
+                    return true;
+                }
+
+                let filename = file.name;
+
+                let extension = filename.split('.').pop().toLowerCase();
+
+                return extension == params["ext1"] || extension == params["ext2"];
+            });
+
+            $.validator.unobtrusive.adapters.add("picture", ["ext1", "ext2"], function (options) {
+                options.rules["picture"] = {
+                    ext1: options.params["ext1"],
+                    ext2: options.params["ext2"]
+                };
+
+                options.messages["picture"] = options.message;
+            });
+            
+            $.validator.addMethod("maxsize", function (value, element, params) {
+                let file = element.files[0];
+
+                if(!file) {
+                    return true;
+                }
+
+                let filesize = file.size;
+
+                console.log(filesize);
+                console.log(params);
+                console.log(parseInt(params, 10));
+
+                return filesize <= parseInt(params, 10);
+            });
+
+            $.validator.unobtrusive.adapters.add("maxsize", ["size"], function (options) {
+                options.rules["maxsize"] = options.params.size;
+
+                options.messages["maxsize"] = options.message;
+            });
+
+            $("#update").removeData("validator")    // Added by jQuery Validation
+                .removeData("unobtrusiveValidation");   // Added by jQuery Unobtrusive Validation
+            $.validator.unobtrusive.parse($("#update"));
+        });
+    </script>
+    }

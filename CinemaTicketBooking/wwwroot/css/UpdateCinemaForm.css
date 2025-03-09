@@ -1,0 +1,42 @@
+﻿.table-container h4 {
+    margin-left: 20%;
+}
+
+form {
+    margin: auto;
+    width: 40%;
+}
+
+form div {
+    margin-bottom: 10px; 
+}
+
+label {
+    display: block;
+    padding: 10px 10px 10px 0px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ececec;
+    border-radius: 4px;
+}
+
+input:focus {
+    border: 1px solid #ececec;
+    outline: 3px solid #0062ca4d;
+}
+
+label[for="logo-input"] {
+    width: fit-content;
+    margin-bottom: 3%;
+}
+
+.logo-div {
+    height: 20%;
+}
+
+.logo-div img {
+    height: 20%;
+}
